@@ -1,0 +1,57 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: projects
+    // Document ID: {projectId}
+    // Fields:
+    //   - title: string (required)
+    //   - category: string (required, enum)
+    //   - videoUrl: string (required, URL)
+    //   - description: string (optional)
+    //   - createdAt: timestamp (required)
+    //   - uid: string (required, owner UID)
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "raunakraj1164@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    function isValidProject(data) {
+      let requiredFields = ['title', 'category', 'videoUrl', 'uid', 'createdAt'];
+      return data.keys().hasAll(requiredFields) &&
+             data.title is string && data.title.size() > 0 && data.title.size() < 100 &&
+             data.category in ["Social Media Ads", "Reels Editing", "Cinematic Edits", "YouTube Content"] &&
+             data.videoUrl is string && data.videoUrl.size() < 1000 &&
+             data.uid is string &&
+             data.createdAt is timestamp &&
+             (!('updatedAt' in data) || data.updatedAt is timestamp);
+    }
+
+    match /projects/{projectId} {
+      allow read: if true; // Portfolio is public
+      allow create: if isAuthenticated() && isValidProject(request.resource.data) && 
+                      request.resource.data.uid == request.auth.uid && 
+                      (isOwner(request.resource.data.uid) || isAdmin());
+      allow update: if isAuthenticated() && isValidProject(request.resource.data) && 
+                      request.resource.data.uid == resource.data.uid && 
+                      (isOwner(resource.data.uid) || isAdmin());
+      allow delete: if isAuthenticated() && (isOwner(resource.data.uid) || isAdmin());
+    }
+  }
+}

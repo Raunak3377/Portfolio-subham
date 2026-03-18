@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "project": {
+      "title": "Project",
+      "description": "A video editing project in the portfolio.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the project."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the project (e.g., Commercial, Travel).",
+          "enum": ["Commercial Edits", "Short-Form Reels", "Travel / Cinematic", "Motion Graphics", "YouTube Videos"]
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "URL to the project's video (e.g., YouTube, Vimeo, or direct link)."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the project."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the project was added."
+        },
+        "uid": {
+          "type": "string",
+          "description": "The UID of the user who added the project."
+        }
+      },
+      "required": ["title", "category", "videoUrl", "uid", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "project",
+      "description": "Collection of portfolio projects."
+    }
+  }
+}

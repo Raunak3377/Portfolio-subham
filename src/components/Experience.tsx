@@ -88,7 +88,7 @@ export const Experience = () => {
           transition={{ delay: 0.2 }}
         >
           <span className="text-accent font-mono text-sm tracking-widest uppercase mb-4 block">History</span>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">TIMELINE</h2>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">Education</h2>
           
           <div className="space-y-8 relative before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[1px] before:bg-white/10">
             {timeline.map((item, index) => (

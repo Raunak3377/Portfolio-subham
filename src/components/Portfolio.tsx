@@ -1,8 +1,6 @@
 import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ExternalLink, Play } from 'lucide-react';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebase';
 import { VideoModal } from './VideoModal';
 
 interface Project {
@@ -13,97 +11,127 @@ interface Project {
   description?: string;
 }
 
+// Sample projects - Replace videoUrl with your actual Google Drive video links
+// Format for Google Drive videos: https://drive.google.com/file/d/{FILE_ID}/view
+// Example: https://drive.google.com/file/d/1abc123def456/view
+// The component will automatically convert it to embed format
+const SAMPLE_PROJECTS: Project[] = [
+  {
+    id: '1',
+    title: 'Epic Action Reel',
+    category: 'Social Media Ads',
+    videoUrl: 'https://drive.google.com/file/d/1ekJekADEuSiEsB0aru64khRZOiqKS8QE/view?usp=drive_link',
+    description: 'High-energy action-packed social media advertisement'
+  },
+  {
+    id: '2',
+    title: 'Cinematic Journey',
+    category: 'Cinematic Edits',
+    videoUrl: 'https://drive.google.com/file/d/1JU6EYEYw7-GveMqOhG40z7_OZF4s_yJA/view?usp=drive_link',
+    description: 'Breathtaking cinematic storytelling'
+  },
+  {
+    id: '3',
+    title: 'Quick Cuts',
+    category: 'Reels Editing',
+    videoUrl: 'https://drive.google.com/file/d/1VG9_wLYJH2TrIoc39yTxsjY5dLVQTvVz/view?usp=drive_link',
+    description: 'Fast-paced reel for social platforms'
+  },
+  {
+    id: '4',
+    title: 'YouTube Edit',
+    category: 'YouTube Content',
+    videoUrl: 'https://drive.google.com/file/d/1XrQhT6i6U6YEeIiIZZ1t143B-c6H1Xvz/view?usp=drive_link',
+    description: 'Engaging YouTube vlog edit with dynamic cuts and effects'
+  },
+  {
+    id: '5',
+    title: 'Brand Promo',
+    category: 'Social Media Ads',
+    videoUrl: 'https://drive.google.com/file/d/1sAOn1iGVSI6HOxqFmEN5aV6GaIgZ6ym8/view?usp=drive_link',
+    description: 'Sleek promotional video for brand awareness'
+  }
+];
+
 const AnimatedTextBackground = ({ title, category }: { title: string; category: string }) => {
+  // Generate random unique text phrases
+  const phrases = [title, category, 'Video', 'Edit', 'Create', 'Design', 'Craft', 'Cinema'];
+  
   return (
     <div className="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
-        <div className="grid grid-cols-4 gap-4 p-4 h-full">
-          {Array.from({ length: 12 }).map((_, i) => (
+      {/* Animated text background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="grid grid-cols-5 gap-3 p-4 h-full">
+          {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, y: -50 }}
               animate={{ 
-                opacity: [0.1, 0.3, 0.1],
-                scale: [1, 1.2, 1],
-                rotate: [0, 5, -5, 0]
+                opacity: [0.05, 0.2, 0.05],
+                y: [0, 30, 0],
               }}
               transition={{ 
-                duration: 4 + Math.random() * 4,
+                duration: 5 + Math.random() * 3,
                 repeat: Infinity,
-                delay: Math.random() * 5
+                delay: Math.random() * 3,
+                ease: "easeInOut"
               }}
-              className="text-[8px] font-mono text-white/40 break-all select-none"
+              className="text-[10px] font-mono text-white/40 break-words select-none whitespace-nowrap"
             >
-              {title} {category} {title}
+              {phrases[i % phrases.length]}
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Dark overlay pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40" />
       
+      {/* Center content with glow effect */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         className="relative z-10 text-center px-6"
       >
         <motion.h4 
-          className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-none mb-2"
+          className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-none mb-3"
           animate={{ 
             textShadow: [
-              "0 0 0px rgba(255,255,255,0)",
-              "0 0 20px rgba(255,255,255,0.3)",
-              "0 0 0px rgba(255,255,255,0)"
+              "0 0 10px rgba(100,200,255,0)",
+              "0 0 30px rgba(100,200,255,0.4)",
+              "0 0 10px rgba(100,200,255,0)"
             ]
           }}
           transition={{ duration: 3, repeat: Infinity }}
         >
           {title}
         </motion.h4>
-        <span className="text-[10px] font-mono text-accent uppercase tracking-[0.3em]">
+        <motion.span 
+          className="text-[11px] font-mono text-accent uppercase tracking-[0.3em] inline-block"
+          animate={{
+            opacity: [0.6, 1, 0.6]
+          }}
+          transition={{ duration: 2.5, repeat: Infinity }}
+        >
           {category}
-        </span>
+        </motion.span>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-accent/10 to-transparent opacity-50" />
+      {/* Bottom gradient glow */}
+      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-accent/15 via-accent/5 to-transparent opacity-60" />
     </div>
   );
 };
 
 export const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  useEffect(() => {
-    const q = query(collection(db, 'projects'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const projectsData = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Project[];
-      setProjects(projectsData);
-      setLoading(false);
-    }, (error) => {
-      console.error("Firestore Error: ", error);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   const categories = ['All', 'Social Media Ads', 'Reels Editing', 'Cinematic Edits', 'YouTube Content'];
 
   const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter(p => p.category === activeCategory);
-
-  if (loading) {
-    return (
-      <section id="portfolio" className="py-32 px-6 max-w-7xl mx-auto text-center">
-        <div className="animate-pulse text-white/40 font-mono">Loading Projects...</div>
-      </section>
-    );
-  }
+    ? SAMPLE_PROJECTS
+    : SAMPLE_PROJECTS.filter(p => p.category === activeCategory);
 
   return (
     <section id="portfolio" className="py-32 px-6 max-w-7xl mx-auto">
@@ -130,9 +158,9 @@ export const Portfolio = () => {
         </div>
       </div>
 
-      {projects.length === 0 ? (
+      {filteredProjects.length === 0 ? (
         <div className="text-center py-20 glass rounded-3xl">
-          <p className="text-white/40 font-mono">No projects found. Use the Admin panel to add your first video.</p>
+          <p className="text-white/40 font-mono">No projects found. Check back soon!</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

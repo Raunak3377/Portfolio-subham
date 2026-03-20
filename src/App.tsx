@@ -13,32 +13,19 @@ import { About } from './components/About';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
 import { Contact } from './components/Contact';
-import { Admin } from './components/Admin';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { useState } from 'react';
 
 export default function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
-
   return (
     <SmoothScroll>
       <CustomCursor />
-      <Navbar onToggleAdmin={() => setIsAdmin(!isAdmin)} isAdmin={isAdmin} />
+      <Navbar />
       <main>
-        {isAdmin ? (
-          <ErrorBoundary>
-            <Admin />
-          </ErrorBoundary>
-        ) : (
-          <>
-            <Hero />
-            <Portfolio />
-            <About />
-            <Experience />
-            <Skills />
-            <Contact />
-          </>
-        )}
+        <Hero />
+        <Portfolio />
+        <About />
+        <Experience />
+        <Skills />
+        <Contact />
       </main>
     </SmoothScroll>
   );

@@ -1,13 +1,8 @@
 import { motion } from 'motion/react';
-import { Menu, X, Settings, Layout } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface NavbarProps {
-  onToggleAdmin: () => void;
-  isAdmin: boolean;
-}
-
-export const Navbar = ({ onToggleAdmin, isAdmin }: NavbarProps) => {
+export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,7 +17,7 @@ export const Navbar = ({ onToggleAdmin, isAdmin }: NavbarProps) => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <motion.a 
           href="#" 
-          onClick={(e) => { e.preventDefault(); if(isAdmin) onToggleAdmin(); }}
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-2xl font-display font-bold tracking-tighter"
@@ -31,7 +26,7 @@ export const Navbar = ({ onToggleAdmin, isAdmin }: NavbarProps) => {
         </motion.a>
 
         <div className="hidden md:flex items-center gap-10">
-          {!isAdmin && [
+          {[
             { name: 'Portfolio', href: '#portfolio' },
             { name: 'About', href: '#about' },
             { name: 'Experience', href: '#experience' },
@@ -46,13 +41,6 @@ export const Navbar = ({ onToggleAdmin, isAdmin }: NavbarProps) => {
               {link.name}
             </a>
           ))}
-          
-          <button 
-            onClick={onToggleAdmin}
-            className="flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-white/40 hover:text-white transition-colors"
-          >
-            {isAdmin ? <><Layout size={16} /> View Site</> : <><Settings size={16} /> Admin</>}
-          </button>
 
           <a 
             href="https://wa.me/919060982460?text=Hi%20Shubham%2C%20I'm%20interested%20in%20your%20video%20editing%20services.%20Can%20we%20talk%3F"
@@ -94,12 +82,6 @@ export const Navbar = ({ onToggleAdmin, isAdmin }: NavbarProps) => {
             {link.name}
           </a>
         ))}
-        <button 
-          onClick={() => { onToggleAdmin(); setIsMenuOpen(false); }}
-          className="text-2xl font-display font-bold text-accent"
-        >
-          {isAdmin ? 'View Site' : 'Admin Dashboard'}
-        </button>
       </motion.div>
     </nav>
   );

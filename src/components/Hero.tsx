@@ -27,12 +27,17 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="group relative px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:pr-12">
+            <a
+              href="https://drive.google.com/drive/folders/1WBeoc5vGC3gLBhCbVTJeQKRDnWLNKpHa?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:pr-12 inline-block"
+            >
               <span className="relative z-10 flex items-center gap-2">
                 Watch Demo Reel <Play size={18} fill="currentColor" />
               </span>
               <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </button>
+            </a>
             
             <a 
               href="https://wa.me/919060982460?text=Hi%20Shubham%2C%20I'm%20interested%20in%20your%20video%20editing%20services.%20Can%20we%20talk%3F"

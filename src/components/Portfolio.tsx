@@ -46,10 +46,38 @@ const SAMPLE_PROJECTS: Project[] = [
   },
   {
     id: '5',
-    title: 'Brand Promo',
-    category: 'Social Media Ads',
+    title: 'Engaging Reels',
+    category: 'Social Media Reels',
     videoUrl: 'https://drive.google.com/file/d/1sAOn1iGVSI6HOxqFmEN5aV6GaIgZ6ym8/view?usp=drive_link',
     description: 'Sleek promotional video for brand awareness'
+  },
+  {
+    id: '6',
+    title: 'Promo Reels',
+    category: 'Reels Editing',
+    videoUrl: 'https://drive.google.com/drive/folders/1hrLWP4yPxFnKRAg74FXPRD_OHF_P42WU?usp=drive_link',
+    description: 'Vibrant travel vlog edit with stunning visuals'
+  },
+  {
+    id: '7',
+    title: 'Tips Reels',
+    category: 'Insta Reels',
+    videoUrl: 'https://drive.google.com/drive/folders/1hrLWP4yPxFnKRAg74FXPRD_OHF_P42WU?usp=drive_link',
+    description: 'Short film edit with cinematic color grading'
+  },
+  {
+    id: '8',
+    title: 'YouTube Video',
+    category: 'YouTube Content',
+    videoUrl: 'https://drive.google.com/file/d/11xuselbuHTU7YkSOxIEPer8kSfYaMCNl/view?usp=sharing',
+    description: 'Engaging YouTube vlog edit with dynamic cuts and effects'
+  },
+  {
+    id: '9',
+    title: 'Informative Reels',
+    category: 'Reels Editing',
+    videoUrl: 'https://drive.google.com/file/d/1A3I35hyEz4bgy7revA3Mvc5QngMvxSjn/view?usp=sharing',
+    description: 'Breathtaking cinematic storytelling'
   }
 ];
 
@@ -165,41 +193,39 @@ export const Portfolio = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.div
-              layout
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden glass cursor-pointer border border-white/5 hover:border-accent/30 transition-colors"
-              onClick={() => setSelectedProject(project)}
-            >
-              <AnimatedTextBackground title={project.title} category={project.category} />
-              
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px]">
-                <span className="text-accent text-xs font-mono mb-2">{project.category}</span>
-                <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-                {project.description && <p className="text-sm text-white/60 mb-6 line-clamp-2">{project.description}</p>}
-                <div className="flex gap-4">
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
-                    className="p-3 bg-white text-black rounded-full hover:bg-accent hover:text-white transition-colors"
-                  >
-                    <Play size={20} fill="currentColor" />
-                  </button>
-                  <a 
-                    href={project.videoUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors"
-                  >
-                    <ExternalLink size={20} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+           <motion.div
+  layout
+  key={project.id}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: index * 0.1 }}
+  className="group relative aspect-[4/3] rounded-2xl overflow-hidden glass cursor-pointer border border-white/5 hover:border-accent/30 transition-colors"
+  onClick={() => setSelectedProject(project)}
+>
+  <AnimatedTextBackground title={project.title} category={project.category} />
+
+  {/* ✅ Buttons always visible (no hover overlay) */}
+  <div className="absolute bottom-6 left-6 flex gap-4 z-10">
+    <button 
+      onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+      className="p-3 bg-white text-black rounded-full hover:bg-accent hover:text-white transition-colors"
+    >
+      <Play size={20} fill="currentColor" />
+    </button>
+
+    <a 
+      href={project.videoUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition-colors"
+    >
+      <ExternalLink size={20} />
+    </a>
+  </div>
+</motion.div>
+
           ))}
         </div>
       )}

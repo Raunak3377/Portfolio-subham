@@ -17,25 +17,54 @@ const workExperience = [
 
 const timeline = [
   {
-    company: 'Salford Studio',
-    role: 'Web Content Manager',
-    duration: '2018 – Present',
+    company: 'MAAC (Media, Animation, Computer Editing)',
+    role: 'Professional Training',
+    duration: 'Completed',
     work: [
-      'Website design & database management',
-      'Built scalable ad-serving logic',
-      'Managed online classroom systems',
+      'Video Editing & Post-Production',
+      'Cinematic Content Creation',
+      'Motion Graphics & Visual Effects',
     ],
-    icon: Briefcase,
+    icon: GraduationCap,
   },
   {
-    company: 'Larana Inc.',
-    role: 'Content Analyst',
-    duration: '2016 – 2018',
+    company: 'Arena Animation',
+    role: 'Professional Training',
+    duration: 'Completed',
     work: [
-      'Managed CRM data (leads, prospects, customers)',
-      'Worked on product development & QA systems',
+      'Creative Media Production',
+      'Advanced Video Editing Techniques',
+      'Animation & Digital Storytelling',
     ],
-    icon: Briefcase,
+    icon: GraduationCap,
+  },
+  {
+    company: 'College Education',
+    role: 'Bachelor\'s Degree',
+    duration: 'Completed',
+    work: [
+      'Higher Education Completed',
+      'Specialized in Media & Creative Studies',
+    ],
+    icon: GraduationCap,
+  },
+  {
+    company: 'Senior Secondary Education (12th)',
+    role: 'High School',
+    duration: 'Completed',
+    work: [
+      'Secondary Education Completed',
+    ],
+    icon: GraduationCap,
+  },
+  {
+    company: 'Secondary Education (10th)',
+    role: 'High School',
+    duration: 'Completed',
+    work: [
+      'Foundation Education Completed',
+    ],
+    icon: GraduationCap,
   },
 ];
 

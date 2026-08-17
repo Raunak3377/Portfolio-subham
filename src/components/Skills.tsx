@@ -4,7 +4,6 @@ import { Video, Layers, Palette, PenTool, Lightbulb, Monitor, Music, Clock, Book
 const languageSkills = [
   { name: 'Hindi', level: 90 },
   { name: 'English', level: 85 },
-  { name: 'Russian', level: 75 },
 ];
 
 const personalSkills = [

@@ -5,6 +5,7 @@
 
 import { CustomCursor } from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
+import { LiquidInteraction } from './components/LiquidInteraction';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
@@ -17,6 +18,7 @@ import { Contact } from './components/Contact';
 export default function App() {
   return (
     <SmoothScroll>
+      <LiquidInteraction />
       <CustomCursor />
       <Navbar />
       <main>

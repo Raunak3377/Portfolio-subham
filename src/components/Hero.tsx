@@ -22,7 +22,7 @@ export const Hero = () => {
         transition={{ duration: 1.1, ease: 'easeOut' }}
       >
         <div className="absolute inset-0 rounded-full bg-accent/20 blur-[110px] scale-75 translate-x-2" />
-        <img src="/about.jpeg" alt="Shubham Soni" className="relative h-full w-full object-contain object-bottom drop-shadow-[0_0_55px_rgba(139,92,246,0.25)]" style={{ maskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)', WebkitMaskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)' }} />
+        <img src="//about.png" alt="Shubham Soni" className="relative h-full w-full object-contain object-bottom drop-shadow-[0_0_55px_rgba(139,92,246,0.25)]" style={{ maskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)', WebkitMaskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)' }} />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_58%_48%,transparent_35%,rgba(5,5,5,.35)_68%,#050505_90%)] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_42%,rgba(139,92,246,0.20),transparent_34%)] pointer-events-none" />
       </motion.div>

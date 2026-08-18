@@ -27,12 +27,12 @@ export default function App() {
         <Hero />
         <Clients />
         <Portfolio />
+        <Services />
         <About />
         <Experience />
         <Skills />
         <Contact />
-       </main>
-
+      </main>
     </SmoothScroll>
   );
 }

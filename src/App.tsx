@@ -6,6 +6,7 @@
 import { CustomCursor } from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
 import { LiquidInteraction } from './components/LiquidInteraction';
+import { PetCompanion } from './components/PetCompanion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <SmoothScroll>
       <LiquidInteraction />
+      <PetCompanion />
       <CustomCursor />
       <Navbar />
       <main>

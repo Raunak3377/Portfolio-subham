@@ -32,8 +32,23 @@ export const LiquidInteraction = () => {
       }
     };
 
+    const scroll = () => {
+      const amount = Math.min(80, Math.abs(window.scrollY - (scroll.last ?? window.scrollY)) * 0.9);
+      ref.current?.style.setProperty('--scroll-wave', `${amount}px`);
+      window.clearTimeout(scroll.timer);
+      scroll.timer = window.setTimeout(() => {
+        ref.current?.style.setProperty('--scroll-wave', '0px');
+      }, 180);
+      scroll.last = window.scrollY;
+    };
+
     window.addEventListener('mousemove', throttled, { passive: true });
-    return () => window.removeEventListener('mousemove', throttled);
+    window.addEventListener('scroll', scroll, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', throttled);
+      window.removeEventListener('scroll', scroll);
+      window.clearTimeout(scroll.timer);
+    };
   }, [x, y]);
 
   return (

@@ -31,7 +31,7 @@ export default function App() {
         <Experience />
         <Skills />
         <Contact />
-      </main>
+       </main>
 
     </SmoothScroll>
   );

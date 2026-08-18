@@ -22,6 +22,7 @@ export default function App() {
       <LiquidInteraction />
       <CustomCursor />
       <Navbar />
+
       <main>
         <Hero />
         <Clients />
@@ -31,6 +32,7 @@ export default function App() {
         <Skills />
         <Contact />
       </main>
+
     </SmoothScroll>
   );
 }

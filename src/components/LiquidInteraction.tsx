@@ -7,6 +7,8 @@ export const LiquidInteraction = () => {
   const y = useMotionValue(-200);
   const sx = useSpring(x, { stiffness: 120, damping: 20, mass: 0.35 });
   const sy = useSpring(y, { stiffness: 120, damping: 20, mass: 0.35 });
+  const lastScroll = useRef(0);
+  const scrollTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -33,21 +35,22 @@ export const LiquidInteraction = () => {
     };
 
     const scroll = () => {
-      const amount = Math.min(80, Math.abs(window.scrollY - (scroll.last ?? window.scrollY)) * 0.9);
+      const amount = Math.min(80, Math.abs(window.scrollY - lastScroll.current) * 0.9);
       ref.current?.style.setProperty('--scroll-wave', `${amount}px`);
-      window.clearTimeout(scroll.timer);
-      scroll.timer = window.setTimeout(() => {
+      window.clearTimeout(scrollTimer.current);
+      scrollTimer.current = window.setTimeout(() => {
         ref.current?.style.setProperty('--scroll-wave', '0px');
       }, 180);
-      scroll.last = window.scrollY;
+      lastScroll.current = window.scrollY;
     };
 
+    lastScroll.current = window.scrollY;
     window.addEventListener('mousemove', throttled, { passive: true });
     window.addEventListener('scroll', scroll, { passive: true });
     return () => {
       window.removeEventListener('mousemove', throttled);
       window.removeEventListener('scroll', scroll);
-      window.clearTimeout(scroll.timer);
+      window.clearTimeout(scrollTimer.current);
     };
   }, [x, y]);
 

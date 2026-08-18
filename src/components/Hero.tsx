@@ -6,27 +6,53 @@ export const Hero = () => {
     <section className="relative h-screen flex items-center justify-center overflow-hidden px-6">
       <div className="absolute inset-0 z-0 bg-[#050505]" />
 
+      {/* Original photo — softly blended into the page so no rectangular edge/line appears */}
       <motion.div
-        className="absolute right-[-6%] bottom-0 z-[1] h-[92vh] w-[58vw] max-w-[760px]"
+        className="absolute right-[-6%] bottom-[-3%] z-[1] h-[94vh] w-[62vw] max-w-[820px]"
         initial={{ opacity: 0, x: 80, scale: 0.98 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 1.1, ease: 'easeOut' }}
       >
-        <div className="absolute inset-0 rounded-[45%] bg-accent/25 blur-[90px] scale-75 translate-x-4" />
+        <div className="absolute inset-0 rounded-full bg-accent/20 blur-[110px] scale-75 translate-x-2" />
         <img
           src="/about.jpeg"
           alt="Shubham Soni"
-          className="relative h-full w-full object-contain object-bottom drop-shadow-[0_0_45px_rgba(139,92,246,0.22)]"
-          style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%)' }}
+          className="relative h-full w-full object-contain object-bottom drop-shadow-[0_0_55px_rgba(139,92,246,0.25)]"
+          style={{
+            maskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 72% 78% at 58% 48%, black 0%, black 52%, rgba(0,0,0,.75) 66%, transparent 84%)'
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_40%,rgba(139,92,246,0.18),transparent_38%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_58%_48%,transparent_35%,rgba(5,5,5,.35)_68%,#050505_90%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_42%,rgba(139,92,246,0.20),transparent_34%)] pointer-events-none" />
       </motion.div>
 
       <div className="pointer-events-none absolute inset-0 z-[2] overflow-hidden">
         <motion.div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-accent/20 blur-[110px]" animate={{ x: [0, 100, 0], y: [0, -60, 0], scale: [1, 1.2, 1] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
         <motion.div className="absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-neon-purple/20 blur-[120px]" animate={{ x: [0, -120, 0], y: [0, 50, 0], scale: [1, 1.15, 1] }} transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }} />
+
+        {/* Moving elements behind SHUBHAM SONI */}
+        <motion.div
+          className="absolute left-[17%] top-[31%] h-44 w-44 rounded-full border border-accent/20 shadow-[0_0_45px_rgba(139,92,246,.12)]"
+          animate={{ rotate: 360, scale: [1, 1.08, 1], x: [0, 18, 0], y: [0, -12, 0] }}
+          transition={{ rotate: { duration: 18, repeat: Infinity, ease: 'linear' }, scale: { duration: 5, repeat: Infinity, ease: 'easeInOut' }, x: { duration: 7, repeat: Infinity, ease: 'easeInOut' }, y: { duration: 6, repeat: Infinity, ease: 'easeInOut' } }}
+        />
+        <motion.div
+          className="absolute left-[28%] top-[47%] h-20 w-20 rounded-full border border-neon-blue/25"
+          animate={{ y: [0, -28, 0], x: [0, 20, 0], opacity: [0.25, 0.7, 0.25], rotate: [0, 90, 180] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute left-[9%] top-[58%] h-3 w-3 rounded-full bg-neon-blue shadow-[0_0_22px_rgba(0,242,255,.9)]"
+          animate={{ x: [0, 85, 0], y: [0, -55, 0], scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute left-[39%] top-[25%] h-2 w-2 rounded-full bg-accent shadow-[0_0_18px_rgba(139,92,246,.9)]"
+          animate={{ x: [0, -55, 15, 0], y: [0, 35, 70, 0], opacity: [0.2, 1, 0.4, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
         <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(255,255,255,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.25)_1px,transparent_1px)] bg-[size:70px_70px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
       </div>
 

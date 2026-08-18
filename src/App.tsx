@@ -8,6 +8,7 @@ import { SmoothScroll } from './components/SmoothScroll';
 import { LiquidInteraction } from './components/LiquidInteraction';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { Clients } from './components/Clients';
 import { Portfolio } from './components/Portfolio';
 import { Services } from './components/Services';
 import { About } from './components/About';
@@ -23,6 +24,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Clients />
         <Portfolio />
         <About />
         <Experience />

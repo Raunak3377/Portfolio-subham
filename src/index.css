@@ -34,6 +34,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-i
 .liquid-wave-one { top: 24%; animation: waterFloat 9s ease-in-out infinite; }
 .liquid-wave-two { bottom: 14%; opacity: .08; animation: waterFloatReverse 12s ease-in-out infinite; }
 
+/* Small cursor-following pet companion */
+.pet-companion { position: fixed; left: 0; top: 0; z-index: 9997; width: 52px; height: 52px; pointer-events: auto; cursor: pointer; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); }
+.pet-animal { display: block; width: 52px; height: 52px; font-size: 36px; line-height: 52px; text-align: center; user-select: none; }
+.pet-shadow { position: absolute; left: 14px; bottom: 2px; width: 25px; height: 7px; border-radius: 50%; background: rgba(0,0,0,.35); filter: blur(4px); z-index: -1; }
+
 @keyframes liquidRipple { 0% { transform: scale(.3); opacity: .9; } 100% { transform: scale(8); opacity: 0; } }
 @keyframes waterFloat { 0%,100% { transform: translate3d(-4%,0,0) rotate(-2deg) scaleY(.8); } 50% { transform: translate3d(4%,18px,0) rotate(2deg) scaleY(1.15); } }
 @keyframes waterFloatReverse { 0%,100% { transform: translate3d(4%,0,0) rotate(2deg) scaleY(1); } 50% { transform: translate3d(-5%,-20px,0) rotate(-2deg) scaleY(.75); } }

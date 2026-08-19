@@ -3,10 +3,9 @@ import { Play, ArrowRight } from 'lucide-react';
 
 export const Hero = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden px-6">
+    <section className="relative min-h-[900px] md:h-screen md:min-h-0 flex items-center justify-center overflow-hidden px-5 sm:px-6">
       <div className="absolute inset-0 z-0 bg-[#050505]" />
 
-      {/* Subtle moving smoke behind the original portrait */}
       <div className="pointer-events-none absolute right-[2%] bottom-[4%] z-[0] h-[78vh] w-[62vw] max-w-[900px] overflow-hidden opacity-65">
         <motion.div className="absolute left-[10%] top-[20%] h-[45%] w-[45%] rounded-full bg-violet-500/20 blur-[90px]" animate={{ x: [0, 70, -25, 0], y: [0, -35, 25, 0], scale: [1, 1.18, .92, 1] }} transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }} />
         <motion.div className="absolute right-[5%] top-[30%] h-[40%] w-[48%] rounded-full bg-purple-400/16 blur-[100px]" animate={{ x: [0, -80, 30, 0], y: [0, 35, -25, 0], scale: [1, .9, 1.2, 1] }} transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }} />
@@ -14,9 +13,8 @@ export const Hero = () => {
         <motion.div className="absolute inset-[8%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,.18),transparent_60%)] blur-2xl" animate={{ rotate: [0, 8, -6, 0], scale: [1, 1.05, .98, 1] }} transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }} />
       </div>
 
-      {/* Original photo — never regenerated, so the face stays exactly the same */}
       <motion.div
-        className="absolute right-[-6%] bottom-[-3%] z-[1] h-[94vh] w-[62vw] max-w-[820px]"
+        className="absolute right-[-6%] bottom-[-3%] z-[1] h-[94vh] w-[62vw] max-w-[820px] max-md:right-[-18%] max-md:bottom-0 max-md:h-[540px] max-md:w-[440px] max-md:max-w-none"
         initial={{ opacity: 0, x: 80, scale: 0.98 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 1.1, ease: 'easeOut' }}
@@ -37,13 +35,13 @@ export const Hero = () => {
         <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(255,255,255,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.25)_1px,transparent_1px)] bg-[size:70px_70px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl text-center md:text-left md:pr-[38vw]">
+      <div className="relative z-10 w-full max-w-7xl text-left md:pr-[38vw] pt-28 sm:pt-32 md:pt-0">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: 'easeOut' }}>
           <motion.span initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15, duration: 0.6 }} className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-widest uppercase mb-6 text-accent backdrop-blur-md">Professional Video Editor</motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.9, ease: 'easeOut' }} className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-8">SHUBHAM <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-accent to-neon-purple bg-[length:200%_auto] animate-[gradient_6s_ease_infinite]">SONI</span></motion.h1>
-          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.8 }} className="text-lg md:text-xl text-white/60 max-w-xl mb-10 font-light leading-relaxed mx-auto md:mx-0">"Crafting High-Impact Videos That Capture Attention and Drive Engagement"</motion.p>
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }} className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-6">
-            <a href="https://drive.google.com/drive/folders/1WBeoc5vGC3gLBhCbVTJeQKRDnWLNKpHa?usp=drive_link" target="_blank" rel="noopener noreferrer" className="group relative px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:pr-12 hover:shadow-[0_0_35px_rgba(139,92,246,0.35)] inline-block"><span className="relative z-10 flex items-center gap-2">Watch Demo Reel <Play size={18} fill="currentColor" /></span><div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" /></a>
+          <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.9, ease: 'easeOut' }} className="text-[56px] sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[.92] mb-7 md:mb-8">SHUBHAM <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-accent to-neon-purple bg-[length:200%_auto] animate-[gradient_6s_ease_infinite]">SONI</span></motion.h1>
+          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.8 }} className="text-[17px] sm:text-lg md:text-xl text-white/60 max-w-[340px] sm:max-w-xl mb-8 md:mb-10 font-light leading-relaxed">"Crafting High-Impact Videos That Capture Attention and Drive Engagement"</motion.p>
+          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }} className="flex flex-col sm:flex-row items-start justify-start gap-5 md:gap-6">
+            <a href="https://drive.google.com/drive/folders/1WBeoc5vGC3gLBhCbVTJeQKRDnWLNKpHa?usp=drive_link" target="_blank" rel="noopener noreferrer" className="group relative px-7 sm:px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:pr-12 hover:shadow-[0_0_35px_rgba(139,92,246,0.35)] inline-block"><span className="relative z-10 flex items-center gap-2">Watch Demo Reel <Play size={18} fill="currentColor" /></span><div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" /></a>
             <a href="https://wa.me/919060982460?text=Hi%20Shubham%2C%20I'm%20interested%20in%20your%20video%20editing%20services.%20Can%20we%20talk%3F" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-white/80 hover:text-white transition-colors">Hire Me <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></a>
           </motion.div>
         </motion.div>

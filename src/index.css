@@ -49,6 +49,15 @@ html.lenis { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
+/* Phones: keep the desktop experience untouched, but remove desktop-only cursor effects. */
+@media (pointer: coarse) {
+  .custom-cursor,
+  .cursor-follower,
+  .pet-companion { display: none !important; }
+
+  .liquid-interaction { opacity: .45; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
